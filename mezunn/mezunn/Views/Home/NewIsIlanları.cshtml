@@ -1,0 +1,92 @@
+﻿@using EntityLayer.Concrete
+@model List<IsIlanlari>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>İş İlanları</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  
+    <a href="/Home/NewHomePage" class="btn btn-primary">Ana Sayfa</a>
+
+    <div class="container">
+        <h1>İş İlanları</h1>
+
+        <br><br>
+        <table class="table table-bordered">
+            <tr>
+                <th>Pozisyon</th>
+                <th>Şirket Adı</th>
+                <th>Açıklama</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.pozision</td>
+                    <td>@item.CompanyName</td>
+                    <td>@item.Description</td>
+                    <td>
+                        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#basvuruModal">Başvuru Yap</a>
+                    </td>
+                </tr>
+            }
+        </table>
+        <div class="modal fade" id="basvuruModal" tabindex="-1" role="dialog" aria-labelledby="basvuruModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="basvuruModalLabel">Başvuru Yap</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="modal-body">
+                            <form method="post">
+                                <div class="form-group">
+                                    <label for="eposta">E-posta Adresi</label>
+                                    <input name="registerEmail" type="email" class="form-control" id="eposta" value="@Session["Kullanici"].ToString() ">
+                                </div>
+                                <div class="form-group">
+                                    <label for="adSoyad">Ad </label>
+                                    <input name="registerName" type="text" class="form-control" id="adSoyad" placeholder="Adınız ">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Soyad"> Soyad</label>
+                                    <input name="resigterLastName" type="text" class="form-control" placeholder="Soyadınız">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="ozgecmis">Özgeçmiş</label>
+                                    <input name="registerDepartment" class="form-control" placeholder="Bölüm">
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Başvur</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+

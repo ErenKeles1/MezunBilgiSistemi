@@ -1,0 +1,36 @@
+﻿@using EntityLayer.Concrete
+@model List<Register>
+@{
+    ViewBag.Title = "MezunBilgileri";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<table class="table table-bordered">
+    <tr>
+        <th>İSİM</th>
+        <th>SOYİSİM</th>
+        <th>EMAİL</th>
+        <th>ŞİFRE</th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+<tr>
+
+    <td>@item.registerName</td>
+    <td>@item.resigterLastName</td>
+    <td>@item.registerEmail</td>
+    <td>@item.registerPassword</td>
+    <td><a href="/Admin/RegisterDelete/@item.registerId" class="btn btn-primary">Sil </a></td>
+    <td><a href="/Admin/UpdateRegister/@item.registerId" class="btn btn-warning">Bilgileri Güncelle </a></td>
+    
+    
+</tr>
+    }
+
+</table>
+
+
